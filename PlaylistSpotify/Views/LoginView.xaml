@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mvvm:TinyView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:mvvm="clr-namespace:TinyMvvm;assembly=TinyMvvm.Maui"
+             xmlns:vm="clr-namespace:PlaylistSpotify.ViewModels"
+             x:Class="PlaylistSpotify.Views.LoginView"
+             x:DataType="vm:LoginViewModel"
+             Shell.NavBarIsVisible="False"
+             Title="Login">
+    <Grid>
+        <Image Source="singer.jpg" Aspect="Center"/>
+        <Button Text="Login to Spotify"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Command="{Binding OpenLoginCommand}"/>
+        <Frame x:Name="Login" IsVisible="False" CornerRadius="10" BorderColor="Black">
+            <WebView x:Name="LoginWeb" />
+        </Frame>
+    </Grid>
+</mvvm:TinyView>
