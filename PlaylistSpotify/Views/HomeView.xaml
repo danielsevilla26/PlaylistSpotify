@@ -11,11 +11,18 @@
     <ContentPage.Resources>
         <toolkit:InvertedBoolConverter x:Key="InvertBool"/>
         <DataTemplate x:Key="ItemTemplate" x:DataType="vm:SearchItemViewModel">
-            <VerticalStackLayout Padding="0,0,10,0">
+            <VerticalStackLayout Padding="0,0,10,0" WidthRequest="150">
+                <VerticalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TapCommand}"
+                                          CommandParameter="{Binding Id}"/>
+                    
+                </VerticalStackLayout.GestureRecognizers>
+                
                 <Image Source="{Binding ImageUrl, Mode=OneTime}"
                        WidthRequest="150" 
                        HeightRequest="150"
-                       Aspect="AspectFill"/>
+                       Aspect="AspectFill" HorizontalOptions="Start"/>
+                
                 <Label Text="{Binding Title, Mode=OneTime}"/>
             </VerticalStackLayout>
         </DataTemplate>
@@ -25,7 +32,8 @@
         <SearchBar IsVisible="{Binding IsSearching}"
                    TextColor="{StaticResource AccentTextColor}"
                    Text="{Binding SearchText}"
-                   SearchCommand="{Binding SearchCommand}">
+                   SearchCommand="{Binding SearchCommand}"
+                   Placeholder="What do you want to listen?">
             <SearchBar.Behaviors>
                 <behaviors:FocusBehavior BindingContext="{Binding Source={x:Reference ThisPage}, Path=BindingContext}"
                                          IsFocused="{Binding IsSearching}"/>
@@ -62,10 +70,11 @@
                     <CollectionView ItemsSource="{Binding Tracks}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="vm:SearchItemViewModel">
-                                <HorizontalStackLayout Spacing="10" Padding="0,0,0,10">
+                                <HorizontalStackLayout Spacing="10" Padding="0,0,0,10">                                    
                                     <Image Source="{Binding ImageUrl, Mode=OneTime}"
                                        HeightRequest="30" WidthRequest="30"
                                        Aspect="AspectFill"/>
+                                    
                                     <VerticalStackLayout VerticalOptions="Center">
                                         <Label Text="{Binding Title}" FontSize="Header"/>
                                         <Label Text="{Binding SubTitle}" FontSize="Caption"/>

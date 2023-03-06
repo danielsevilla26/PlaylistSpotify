@@ -5,7 +5,7 @@ namespace PlaylistSpotify.ViewModels
 {
     public partial class HomeViewModel : ViewModel
     {
-        ISpotifyService spotifyService;
+        readonly ISpotifyService spotifyService;
 
         public HomeViewModel(ISpotifyService spotifyService)
         {
@@ -49,6 +49,7 @@ namespace PlaylistSpotify.ViewModels
 
                 var artists = result.Artists.Items.Select(x => new SearchItemViewModel()
                 {
+                    Id = x.Id,
                     Title = x.Name.ShortString(),
                     ImageUrl = x.Images.Any() ? x.Images.First().Url : null,
                     TapCommand = NavigateToArtistCommand,
@@ -58,6 +59,7 @@ namespace PlaylistSpotify.ViewModels
 
                 var albums = result.Albums.Items.Select(x => new SearchItemViewModel()
                 {
+                    Id = x.Id,
                     Title = x.Name.ShortString(),
                     ImageUrl = x.Images.Any() ? x.Images.First().Url : null,
                     TapCommand = NavigateToAlbumCommand,
@@ -67,6 +69,7 @@ namespace PlaylistSpotify.ViewModels
 
                 var tracks = result.Tracks.Items.Select(x => new SearchItemViewModel()
                 {
+                    Id = x.Id,
                     Title = x.Name,
                     SubTitle = x.Artists.Any() ? x.Artists.First().Name : null,
                     ImageUrl = x.Album.Images.Any() ? x.Album.Images.First().Url : null,
@@ -86,9 +89,9 @@ namespace PlaylistSpotify.ViewModels
         }
 
         [RelayCommand]
-        private void NavigateToArtist()
+        private void NavigateToArtist(string id)
         {
-
+            Navigation.NavigateTo("Artist", id);
         }
 
         [RelayCommand]
@@ -106,6 +109,7 @@ namespace PlaylistSpotify.ViewModels
 
     public class SearchItemViewModel : ViewModel
     {
+        public string Id { get; set; }
         public string Title { get; set; }
         public string SubTitle { get; set; }
         public string ImageUrl { get; set; }

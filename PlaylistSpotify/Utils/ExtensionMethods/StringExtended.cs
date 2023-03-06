@@ -2,10 +2,10 @@
 {
     public static class StringExtended
     {
-        public static string ShortString(this string value)
+        public static string ShortString(this string value, int maxLength = 18)
         {
-            if (value.Length > 20)
-                return string.Format("{0}...", value[..19]);
+            if (value.Length > maxLength)
+                return string.Format("{0}...", value[..(maxLength - 1)]);
 
             return value;
         }

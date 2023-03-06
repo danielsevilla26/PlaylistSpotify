@@ -15,11 +15,21 @@
         public async override Task Initialize()
         {
             await base.Initialize();
+            IsBusy = true;
 
-            if (await secureStorageService.Contains(nameof(AuthResult.AccessToken)))
+            try
             {
-                await Navigation.NavigateTo("//Main");
+                if (await spotifyService.IsSignedIn())
+                {
+                    await Navigation.NavigateTo("//Home");
+                }
             }
+            catch (Exception ex)
+            {
+                await HandleException(ex);
+            }
+
+            IsBusy = false;
         }
 
         [ObservableProperty]
@@ -37,7 +47,7 @@
 
             if (result)
             {
-                await Navigation.NavigateTo("//Main");
+                await Navigation.NavigateTo("//Home");
             }
         }
     }

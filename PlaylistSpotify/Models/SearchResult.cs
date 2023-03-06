@@ -88,6 +88,9 @@
 
         [JsonPropertyName("images")]
         public List<Image> Images { get; set; }
+
+        [JsonPropertyName("followers")]
+        public Followers Followers { get; set; }
     }
 
     public class Artists

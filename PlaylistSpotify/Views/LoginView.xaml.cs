@@ -58,7 +58,7 @@ public partial class LoginView
 
     private async void LoginWeb_Navigating(object sender, WebNavigatingEventArgs e)
     {
-        if (!e.Url.Contains("redirect_uri") && e.Url.Contains("https://listbuilder/login"))
+        if (!e.Url.Contains("redirect_uri") && e.Url.Contains("https://listspotify/login"))
         {
             var queryString = e.Url.Split("?").Last();
             var parts = queryString.Split("&");

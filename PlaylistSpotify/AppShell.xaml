@@ -15,6 +15,10 @@
         <ShellContent Title="Home" Route="Home"
                       Icon="dotnet_bot.svg"
                       ContentTemplate="{DataTemplate views:HomeView}"/>
+
+        <ShellContent Title="Your Library" Route="Library"
+                      Icon="dotnet_bot.svg"
+                      ContentTemplate="{DataTemplate views:LibraryView}"/>
     </TabBar>
 
 </Shell>

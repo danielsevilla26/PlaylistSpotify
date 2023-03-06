@@ -1,0 +1,26 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:PlaylistSpotify.ViewModels"
+             xmlns:mvvm="clr-namespace:TinyMvvm;assembly=TinyMvvm.Maui"
+             xmlns:model="clr-namespace:PlaylistSpotify.Models"
+             x:Class="PlaylistSpotify.Views.LibraryView"
+             x:DataType="vm:LibraryViewModel"
+             >
+    <ContentPage.Resources>
+        <DataTemplate x:Key="ItemTemplate">            
+            <VerticalStackLayout Padding="10">
+                <!--<Button Text="Search" HeightRequest="40" Command="{Binding GetCurrentPlaylistUserCommand}"/>-->
+                <!--<Frame CornerRadius="5">
+                    <Label VerticalOptions="Center" HorizontalOptions="Center" Text="HOLA" TextColor="Red" FontSize="12"/>
+                </Frame>-->
+            </VerticalStackLayout>          
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout>
+        <Button Text="Search" HeightRequest="40" Command="{Binding GetCurrentPlaylistUserCommand}"/>
+        <CollectionView ItemsSource="{Binding Libraries}"
+                                ItemsLayout="HorizontalList"
+                                ItemTemplate="{StaticResource ItemTemplate}"/>
+    </VerticalStackLayout>
+</ContentPage>
